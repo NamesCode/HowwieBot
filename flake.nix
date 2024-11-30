@@ -17,8 +17,14 @@
     {
       devShells.aarch64-linux.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
+          # General tools
           nodejs
           pnpm
+
+          # LSPs
+          typescript
+          typescript-language-server
+          emmet-language-server
         ];
 
         shellHook = ''echo "Abandon all hope, ye who enter here"'';
