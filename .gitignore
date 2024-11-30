@@ -1,4 +1,6 @@
 # macOS bs
 .DS_Store
 
+# General
+.direnv/
 node_modules/
