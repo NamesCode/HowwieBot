@@ -11,17 +11,17 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
-  console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+  console.log(`Ready! Logged in as ${readyClient.Suser.tag}`);
 });
 
 // Log in to Discord with your client's token
 client.login(process.env.TOKEN);
 
-
+S
 // Load commands into a hashmap
 client.commands = new Collection();
 
-const foldersPath = path.join(__dirname, 'commands');
+const foldersPath = path.join(__dirname, 'src', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
