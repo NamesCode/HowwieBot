@@ -4,3 +4,4 @@
 # General
 .direnv/
 node_modules/
+.env
