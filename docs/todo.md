@@ -7,18 +7,18 @@
         - [ ] Ban Dms
         - [ ] Ban reasons
         - [ ] Ban reason screenshot
-        - [ ] Auto Ban on 6 warns
+        ~~- [ ] Auto Ban on 6 warns~~
         - [ ] Temp bans
     - [ ] Warns
         - [ ] Warn Dms
         - [ ] Warn reasons
         - [ ] Warn reason screenshot
-        - [ ] Auto warn based on requirements
+        ~~- [ ] Auto warn based on requirements~~
     - [ ] Timeouts
         - [ ] Timeout Dms
         - [ ] Timeout reasons
         - [ ] Timeout reason screenshot
-        - [ ] Auto timeout based on requirements
+        ~~- [ ] Auto timeout based on requirements~~
     - [ ] Anti raid / Nuke
         - [ ] Detect duplicated messages
         - [ ] Message filter

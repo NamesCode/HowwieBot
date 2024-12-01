@@ -10,24 +10,36 @@
       self,
       nixpkgs,
     }:
-    let
-      system = "aarch64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
-      devShells.aarch64-linux.default = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          # General tools
-          nodejs
-          pnpm
+      devShells =
+        nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-linux"
+            "x86_64-darwin"
+            "aarch64-darwin"
+          ]
+          (
+            system:
+            let
+              pkgs = nixpkgs.legacyPackages.${system};
+            in
+            {
+              default = pkgs.mkShell {
+                nativeBuildInputs = with pkgs; [
+                  # General tools
+                  nodejs
+                  pnpm
 
-          # LSPs
-          typescript
-          typescript-language-server
-          emmet-language-server
-        ];
+                  # LSPs
+                  typescript
+                  typescript-language-server
+                  emmet-language-server
+                ];
 
-        shellHook = ''echo "Abandon all hope, ye who enter here"'';
-      };
+                shellHook = ''echo "Abandon all hope, ye who enter here"'';
+              };
+            }
+          );
     };
 }
