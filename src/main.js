@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 // Require the necessary discord.js classes
-const { Client, Collection, Events, SlashCommandBuilder, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 
 // Create a new client instance
 const client = new Client({
@@ -44,6 +44,7 @@ for (const folder of commandFolders) {
   }
 }
 
+// Tells us all the registered commands
 console.log(client.commands);
 
 // Listens to interactions
