@@ -29,7 +29,6 @@
                 nativeBuildInputs = with pkgs; [
                   # General tools
                   nodejs
-                  pnpm
 
                   # LSPs
                   typescript
