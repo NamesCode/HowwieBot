@@ -22,11 +22,10 @@ client.once(Events.ClientReady, readyClient => {
 // Log in to Discord with your client's token
 client.login(process.env.TOKEN);
 
-S
 // Load commands into a hashmap
 client.commands = new Collection();
 
-const foldersPath = path.join(__dirname, 'src', 'commands');
+const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
