@@ -1,8 +1,10 @@
 {
 	"dependencies": {
+		"commandkit": "^0.1.10",
 		"discord.js": "^14.16.3"
 	},
 	"devDependencies": {
-		"jsdoc": "^4.0.4"
+		"jsdoc": "^4.0.4",
+		"nodemon": "^3.1.7"
 	}
 }
