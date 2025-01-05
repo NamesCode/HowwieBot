@@ -60,27 +60,17 @@ module.exports = {
                 value = value || "N/A";
 
                 // Size constraints because discord
-                if (key.length > 50) {
-                  key = key.slice(0, 47) + "...";
+                if (key.length > 100) {
+                  key = key.slice(0, 97) + "...";
                 };
 
                 // Also because the mf's yap
-                if (value.length > (200 - 16 - key.length)) {
-                  value = value.slice(0, (200 - 16 - 3 - key.length)) + "...";
+                if (value.length > (400 - 16 - key.length)) {
+                  value = value.slice(0, (400 - 16 - 3 - key.length)) + "...";
                 };
 
-                embed = new EmbedBuilder()
-                  .setColor(colour)
-                  .setTitle(`${key}`)
-                  .setDescription(`${value}`)
-                  .setFooter({ text: `Submission #${index + 1 + skip}` })
-
-                if (embeds.length < 10) {
-                  embeds.push(embed);
-                } else {
-                  interaction.channel.send({ embeds: embeds });
-                  embeds = [];
-                }
+                embed
+                  .addFields({ name: `${key}`, value: `${value}` });
               }
 
               interaction.channel.send({ embeds: embeds });
