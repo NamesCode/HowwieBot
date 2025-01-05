@@ -27,7 +27,7 @@ CLIENTID=bots-client-id
 GUILDID=testing-guild-id
 ```
 
-Then register commands with ` node src/register-command.js`.
+Then register commands with `node src/register-command.js`.
 
 Finally run `TOKEN='your-token-here' node src/main.js` for the bot to go live.
 

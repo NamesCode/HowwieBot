@@ -37,7 +37,7 @@
                   emmet-language-server
                 ];
 
-                shellHook = ''echo "Abandon all hope, ye who enter here"'';
+                shellHook = ''echo "Abandon all hope, ye who enter"'';
               };
             }
           );

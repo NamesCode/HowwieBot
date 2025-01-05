@@ -14,9 +14,9 @@ const client = new Client({
 
 new CommandKit({
   client,
-  commandsPath: `${__dirname}/src/commands`,
-  eventsPath: `${__dirname}/src/events`,
-  validationsPath: `${__dirname}/src/validations`,
+  commandsPath: `${__dirname}/commands`,
+  eventsPath: `${__dirname}/events`,
+  //validationsPath: `${__dirname}/validations`,
   devGuildIds: ["1303141502876254233"],
   devUserIds: ["427120596674019329"],
   devRoleIds: ["1312551729392517151"],
