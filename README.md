@@ -9,7 +9,7 @@ The bot for the ZenBooda1 discord server!
 Firstly, you'll need to installing the following packages with your OS's package manager
 
 - nodejs
-- npm
+- pnpm
 
 #### With Nix
 
@@ -17,7 +17,7 @@ Just run `nix develop` lolz
 
 ### Running
 
-Run `npm install` to install the initial dependencies.
+Run `pnpm install` to install the initial dependencies.
 
 After that, create a file with the environment variables and export it with `export $(grep -v '^#' .env | xargs)`.
 Example `.env` file:

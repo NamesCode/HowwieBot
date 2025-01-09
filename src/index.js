@@ -12,11 +12,19 @@ const client = new Client({
   ],
 });
 
+// Import the models
+const Infraction = require('../src/models/infraction');
+const Member = require('../src/models/member'); // Correct the import here
+
+// Set up associations between models
+Member.hasMany(Infraction);
+Infraction.belongsTo(Member);
+
 new CommandKit({
   client,
-  commandsPath: `${__dirname}/commands`,
-  eventsPath: `${__dirname}/events`,
-  //validationsPath: `${__dirname}/validations`,
+  commandsPath: path.join(__dirname, 'commands'),  
+  eventsPath: path.join(__dirname, 'events'),      
+  validationsPath: path.join(__dirname, 'validations'),  
   devGuildIds: ["1303141502876254233"],
   devUserIds: ["427120596674019329"],
   devRoleIds: ["1312551729392517151"],
@@ -25,6 +33,8 @@ new CommandKit({
 });
 
 client.login(process.env.TOKEN);
+
+
 
 // // When the client is ready, run this code (only once).
 // // The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.

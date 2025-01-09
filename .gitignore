@@ -5,3 +5,4 @@
 .direnv/
 node_modules/
 .env
+.sqlite

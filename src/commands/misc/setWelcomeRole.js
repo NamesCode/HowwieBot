@@ -1,46 +1,70 @@
 const { SlashCommandBuilder } = require("discord.js");
-const Guild = require("../../models/guild"); // Import the Guild model
+const Guild = require("../../models/guild");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("setwelcomerole")
-    .setDescription(
-      "Set a role to assign to new members when they join the server."
+    .setName("welcomerole")
+    .setDescription("Manage the role assigned to new members.")
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("set")
+        .setDescription("Set the role to assign to new members.")
+        .addRoleOption((option) =>
+          option
+            .setName("role")
+            .setDescription("The role to assign to new members.")
+            .setRequired(true)
+        )
     )
-    .addRoleOption((option) =>
-      option
-        .setName("role")
-        .setDescription("The role to assign to new members.")
-        .setRequired(true)
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("clear")
+        .setDescription("Clear the role assigned to new members.")
     ),
   run: async ({ interaction }) => {
-    const role = interaction.options.getRole("role"); // Get the role from the command options
-    const guildId = interaction.guild.id; // Get the guild ID
+    const subcommand = interaction.options.getSubcommand();
+    const guildId = interaction.guild.id;
 
     try {
-      // Find or create the guild entry in the database
       const dbGuild = await Guild.findOne({ where: { id: guildId } });
 
-      if (dbGuild) {
-        // Update the welcome role ID
-        await dbGuild.update({ welcomeRoleId: role.id });
-      } else {
-        // Create a new guild entry if it doesn't exist
-        await Guild.create({ id: guildId, welcomeRoleId: role.id });
-      }
+      if (subcommand === "set") {
+        const role = interaction.options.getRole("role");
 
-      // Send confirmation
-      await interaction.reply(`Welcome role successfully set to ${role.name}!`);
+        if (dbGuild) {
+          await dbGuild.update({ welcomeRoleId: role.id });
+        } else {
+          await Guild.create({ id: guildId, welcomeRoleId: role.id });
+        }
+
+        await interaction.reply({
+          content: `Welcome role successfully set to ${role.name}!`,
+          ephemeral: true,
+        });
+      } else if (subcommand === "clear") {
+        if (dbGuild && dbGuild.welcomeRoleId) {
+          await dbGuild.update({ welcomeRoleId: null });
+          await interaction.reply({
+            content: "Welcome role has been cleared.",
+            ephemeral: true,
+          });
+        } else {
+          await interaction.reply({
+            content: "No welcome role is currently set.",
+            ephemeral: true,
+          });
+        }
+      }
     } catch (error) {
-      console.error("Error setting the welcome role:", error);
+      console.error("Error managing the welcome role:", error);
       await interaction.reply({
-        content: "An error occurred while setting the welcome role.",
+        content: "An error occurred while managing the welcome role.",
         ephemeral: true,
       });
     }
   },
   options: {
-    devOnly: false,
+    devOnly: true,
     userPermissions: ["Administrator"],
     botPermissions: ["Administrator"],
     deleted: false,
