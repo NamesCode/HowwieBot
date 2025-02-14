@@ -4,19 +4,19 @@
 
 - [ ] Moderation
     - [ ] Bans
-        - [ ] Ban Dms
-        - [ ] Ban reasons
+        - [x] Ban Dms
+        - [x] Ban reasons
         - [ ] Ban reason screenshot
         ~~- [ ] Auto Ban on 6 warns~~
-        - [ ] Temp bans
+        - [x] Temp bans
     - [ ] Warns
-        - [ ] Warn Dms
-        - [ ] Warn reasons
+        - [x] Warn Dms
+        - [x] Warn reasons
         - [ ] Warn reason screenshot
         ~~- [ ] Auto warn based on requirements~~
     - [ ] Timeouts
-        - [ ] Timeout Dms
-        - [ ] Timeout reasons
+        - [x] Timeout Dms
+        - [x] Timeout reasons
         - [ ] Timeout reason screenshot
         ~~- [ ] Auto timeout based on requirements~~
     - [ ] Anti raid / Nuke
@@ -45,7 +45,7 @@
 
 ## Setup
 
-- [ ] SQLite database of all information
+- [x] SQLite database of all information
 - [ ] txt file for word blacklist
 - [ ] TOML config file for the bot, with configuration allowable through slashCommands
 - [ ] Set something up with yt-dlp and pipewire for music
