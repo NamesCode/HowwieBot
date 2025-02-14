@@ -25,7 +25,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
         const { options, guild, user } = interaction;
 
-        const target = await options.getMember('member'); // Fixed option name
+        const target = await options.getMember('member'); 
         let reason = await options.getString('reason') || 'No reason provided';
 
         let embed = new EmbedBuilder();
@@ -63,4 +63,10 @@ module.exports = {
 
         await interaction.editReply({ embeds: [embed] });
     },
+    options: {
+        devOnly: true,
+        userPermissions: ["ModerateMembers"],
+        botPermissions: ["ModerateMembers"],
+        deleted: false,
+      },
 };

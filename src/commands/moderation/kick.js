@@ -1,8 +1,4 @@
-const {
-    SlashCommandBuilder,
-    EmbedBuilder,
-    PermissionFlagsBits,
-  } = require("discord.js");
+const {SlashCommandBuilder,EmbedBuilder,PermissionFlagsBits} = require("discord.js");
   
   module.exports = {
     data: new SlashCommandBuilder()
@@ -15,7 +11,7 @@ const {
           .setDescription("Kicks a member from the server.")
           .addUserOption((option) =>
             option
-              .setName("user")
+              .setName("member")
               .setDescription("The member to kick.")
               .setRequired(true)
           )
@@ -37,7 +33,7 @@ const {
       const subcommand = interaction.options.getSubcommand();
   
       if (subcommand === "add") {
-        const member = interaction.options.getMember("user");
+        const member = interaction.options.getMember("member");
         const reason =
           interaction.options.getString("reason") || "No reason provided";
         const dmMember = interaction.options.getBoolean("dm_member") || false;

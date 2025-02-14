@@ -9,21 +9,51 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildMembers,
   ],
 });
 
-// Import the models
 const Infraction = require('../src/models/infraction');
-const Member = require('../src/models/member'); // Correct the import here
+const Member = require('../src/models/member');
+const Level = require('../src/models/level');
 
-// Set up associations between models
 Member.hasMany(Infraction);
 Infraction.belongsTo(Member);
+
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = getAllFiles(eventsPath);
+
+for (const file of eventFiles) {
+  console.log(`Loading event file: ${file}`);
+  const event = require(file);
+
+  if (typeof event === "function") {
+    console.log(`Successfully loaded event: ${file}`);
+  } else {
+    console.warn(`Failed to load event: ${file}. It might not export a function.`);
+  }
+}
+
+function getAllFiles(dirPath, arrayOfFiles = []) {
+  const files = fs.readdirSync(dirPath);
+
+  for (const file of files) {
+    const filePath = path.join(dirPath, file);
+
+    if (fs.statSync(filePath).isDirectory()) {
+      getAllFiles(filePath, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(filePath);
+    }
+  }
+
+  return arrayOfFiles;
+}
 
 new CommandKit({
   client,
   commandsPath: path.join(__dirname, 'commands'),  
-  eventsPath: path.join(__dirname, 'events'),      
+  eventsPath: path.join(__dirname, 'events'),
   validationsPath: path.join(__dirname, 'validations'),  
   devGuildIds: ["1303141502876254233"],
   devUserIds: ["427120596674019329"],

@@ -1,7 +1,8 @@
 const sequelize = require('./src/utils/database'); // Import the Sequelize instance
-const Guild = require('./src/models/guild'); // Import the Guild model
+const Guild = require('./src/models/guild'); 
 const Infraction = require('./src/models/infraction');
 const Member = require('./src/models/member');
+const Level = require('./src/models/level');
 
 // Associations
 Member.hasMany(Infraction);
@@ -19,5 +20,6 @@ sequelize.sync({ alter: true })
 // Sync specific models (force: true to drop and recreate tables)
 Infraction.sync({ force: true });
 Member.sync({ force: true });
+Level.sync({ force: true });
 // You can uncomment this if you need to sync Guild as well:
 // Guild.sync({ force: true });

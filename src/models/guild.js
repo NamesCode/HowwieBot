@@ -1,15 +1,20 @@
-const { Sequelize } = require('sequelize'); // Import the Sequelize constructor
-const sequelize = require('../utils/database'); // Import your Sequelize instance from database.js
+const { DataTypes, Model } = require("sequelize"); // Import the Datatypes/Model constructors from Sequelize
+const sequelize = require("../utils/database"); // Import your Sequelize instance from database.js
 
-const Guild = sequelize.define('guild', {
+class Guild extends Model {}
+
+Guild.init(
+  {
     id: {
-        type: Sequelize.STRING, 
-        primaryKey: true,
+      type: DataTypes.STRING,
+      primaryKey: true,
     },
     welcomeRoleId: {
-        type: Sequelize.STRING, 
-        allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-});
+  },
+  { sequelize, modelName: "guild" }
+);
 
 module.exports = Guild;

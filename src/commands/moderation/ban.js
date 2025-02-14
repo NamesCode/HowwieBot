@@ -1,8 +1,4 @@
-const {
-  SlashCommandBuilder,
-  EmbedBuilder,
-  PermissionFlagsBits,
-} = require("discord.js");
+const {SlashCommandBuilder,EmbedBuilder,PermissionFlagsBits,} = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +11,7 @@ module.exports = {
         .setDescription("Bans a member from the server.")
         .addUserOption((option) =>
           option
-            .setName("user")
+            .setName("member")
             .setDescription("The member to ban.")
             .setRequired(true)
         )
@@ -62,7 +58,7 @@ module.exports = {
     const subcommand = interaction.options.getSubcommand();
 
     if (subcommand === "add") {
-      const member = interaction.options.getMember("user");
+      const member = interaction.options.getMember("member");
       const durationInput = interaction.options.getString("duration");
       const reason =
         interaction.options.getString("reason") || "No reason provided";
